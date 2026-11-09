@@ -1,0 +1,1698 @@
+version: 2.1
+
+jobs:
+  z:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Streaming of the error rows
+          command: |
+            mkdir -p /tmp/inner
+            set +o pipefail 2>/dev/null; awk 'BEGIN{for(i=1;i<=50000;i++) {if(i%2==0) print "E",i; else print "O",i}}' > /tmp/inner/blob.filter.ridge.order.profile; true
+            echo "staging complete; file length=$(wc -c </tmp/inner/blob.filter.ridge.order.profile)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'blob.filter.ridge.order.profile'
+  py310-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/0LthpkWgTKJ || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  tab_trimed:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Carry out a full watermark of the video chunks
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; echo "it's done" | od -c | head -2; true ; } > /tmp/inner/UDPMD5
+            echo "staging complete; file length=$(wc -c </tmp/inner/UDPMD5)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'UDPMD5'
+  alpha-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/67ubz || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  FIELD_200010:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Taxi to the growth medium
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; shopt | grep -w on; true ; } > /tmp/inner/meadowHollowRiverShard
+            echo "staging complete; file length=$(wc -c </tmp/inner/meadowHollowRiverShard)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'meadowHollowRiverShard'
+  validate-nightly-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/meadowHollowRiverShard || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  nothing:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Flight level 260 assignment
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; builtin echo "3 jobs pending"; true ; } > /tmp/inner/server-sprite
+            echo "staging complete; file length=$(wc -c </tmp/inner/server-sprite)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'server-sprite'
+  build-full-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/0LthpkWgTKJ || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  fillWithWave:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: High five the antenna
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; head -n 15 /etc/skel/.profile|wc -w; true ; } > /tmp/inner/iter_579
+            echo "staging complete; file length=$(wc -c </tmp/inner/iter_579)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'iter_579'
+  add-edge-hang:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/67ubz || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  pi_j:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: so yeah extract the crash reports
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; tail -n 1 /etc/group | sed 's/:.*//'; true ; } > /tmp/inner/gcrB2oK5
+            echo "staging complete; file length=$(wc -c </tmp/inner/gcrB2oK5)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'gcrB2oK5'
+  alice-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/gcrB2oK5 || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  ella_clove:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Last but not least wind down the circuit breaker
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; getent group | cut -d: -f1; true ; } > /tmp/inner/7d791e8f377b064f41
+            echo "staging complete; file length=$(wc -c </tmp/inner/7d791e8f377b064f41)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - '7d791e8f377b064f41'
+  Build_Image2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/7d791e8f377b064f41 || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  fname_bal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Failover To Middle East
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; gzip -c /etc/group > ${TMPDIR:-/tmp}/sector-video.gz && gunzip -c ${TMPDIR:-/tmp}/sector-video.gz | wc -l; true ; } > /tmp/inner/GPUBond
+            echo "staging complete; file length=$(wc -c </tmp/inner/GPUBond)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'GPUBond'
+  fix-857:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/GPUBond || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  revertClockAtIndex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Retry a8bf
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; ls -d|tac; true ; } > /tmp/inner/rd
+            echo "staging complete; file length=$(wc -c </tmp/inner/rd)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'rd'
+  validate-nightly-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/rd || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  Write-ControllerItem:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: lockdown by ops team
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'Hello, World' | md5sum; true ; } > /tmp/inner/6f1fe77dacad
+            echo "staging complete; file length=$(wc -c </tmp/inner/6f1fe77dacad)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - '6f1fe77dacad'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/6f1fe77dacad || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  flet-bundle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: SUP 543 backfill
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | grep -e "nologin" | sort | head -n 3; true ; } > /tmp/inner/YIELD_RIDGE_PHOTON_GADGET
+            echo "staging complete; file length=$(wc -c </tmp/inner/YIELD_RIDGE_PHOTON_GADGET)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'YIELD_RIDGE_PHOTON_GADGET'
+  p-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/67ubz || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  rgbStub:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: post team
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; for f in $HOME/.bash*; do [ -f "$f" ] && printf "%s %s\n" "$(wc -l < "$f")" "$f"; done; true ; } > /tmp/inner/gI5vCP
+            echo "staging complete; file length=$(wc -c </tmp/inner/gI5vCP)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'gI5vCP'
+  quebec-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/gI5vCP || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  BUCKET_POD:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Roll up the timestamps at your leisure
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; /bin/echo "queue empty"; true ; } > /tmp/inner/tmpd98a
+            echo "staging complete; file length=$(wc -c </tmp/inner/tmpd98a)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'tmpd98a'
+  succes-only-26:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/tmpd98a || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  sdfgh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: This is where we prune the source tree
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; which find >&/dev/null || echo "find missing"; true ; } > /tmp/inner/zETaSERVerTEaL
+            echo "staging complete; file length=$(wc -c </tmp/inner/zETaSERVerTEaL)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'zETaSERVerTEaL'
+  titan-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/zETaSERVerTEaL || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  accentSmoke:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: busy welcoming access cards
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,cherry,15,49.49\n2,melon,12,27.61\n3,orange,4,77.81\n4,banana,3,34.76\n' > "/tmp/booking-carrot-2.tsv" && tail -n +2 "/tmp/booking-carrot-2.tsv" | cut -d, -f3 | paste -sd+; true ; } > /tmp/inner/0LthpkWgTKJ
+            echo "staging complete; file length=$(wc -c </tmp/inner/0LthpkWgTKJ)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - '0LthpkWgTKJ'
+  BuildProd:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/0LthpkWgTKJ || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  ConvertFrom-StreamProperty:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: hour eight pruning
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; touch "/tmp/PROXY_tmp.list" && mv -v "/tmp/PROXY_tmp.list" "/tmp/MATCH_MORNING.out"; true ; } > /tmp/inner/xx_5766cbed6
+            echo "staging complete; file length=$(wc -c </tmp/inner/xx_5766cbed6)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'xx_5766cbed6'
+  november-4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/xx_5766cbed6 || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  tbl_CHAR_PARAM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: 2023 DUTY MANAGER LOOP IN
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; for entry in cat horse dog fox; do printf '%-8s %d\n' "$entry" ${#entry}; done; true ; } > /tmp/inner/67ubz
+            echo "staging complete; file length=$(wc -c </tmp/inner/67ubz)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - '67ubz'
+  greg-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/67ubz || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  xice0fh1j9j3u0:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Batch the learning rate on 1 gpus
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; ls -A ${HOME} | fmt -w 57 | tail -6; true ; } > /tmp/inner/blake_54a9271500a34
+            echo "staging complete; file length=$(wc -c </tmp/inner/blake_54a9271500a34)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'blake_54a9271500a34'
+  jan20-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/blake_54a9271500a34 || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  listLen:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: DhcpLeaseTunnelStep
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; x=$(echo 'v1.2.3 released' | wc -c); echo "chars: $x"; true ; } > /tmp/inner/V
+            echo "staging complete; file length=$(wc -c </tmp/inner/V)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'V'
+  qi-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/0LthpkWgTKJ || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  lemon-0x:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Next bin the fragile items
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; awk -F : '{print $NF}' /etc/passwd | sed 's|.*/||' | tac; true ; } > /tmp/inner/FTPcrimson
+            echo "staging complete; file length=$(wc -c </tmp/inner/FTPcrimson)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'FTPcrimson'
+  ShipApp:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/67ubz || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  uniform_yankee:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: scheduling visa paperwork as we go
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; for p in /etc/s*; do stat -c "%A %n" ${p}; done; true ; } > /tmp/inner/PANO-51831
+            echo "staging complete; file length=$(wc -c </tmp/inner/PANO-51831)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'PANO-51831'
+  november-5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/0LthpkWgTKJ || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  lhq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Deploy the ground truth labels batch 64
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; md5sum /usr/bin/env > /tmp/playground-guest.sum && md5sum -c /tmp/playground-guest.sum; true ; } > /tmp/inner/DSC-49775
+            echo "staging complete; file length=$(wc -c </tmp/inner/DSC-49775)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'DSC-49775'
+  VERIFY_STG:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/DSC-49775 || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  TitleAlphaLimitCold:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: beforeChargebackRollForward
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; grep -qs ' / ' /proc/mounts && echo found || echo 'not found'; true ; } > /tmp/inner/SparkFilter
+            echo "staging complete; file length=$(wc -c </tmp/inner/SparkFilter)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'SparkFilter'
+  sanity:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/SparkFilter || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  KloarkxoshPipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Seriously review the card settlements this time
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; md5sum /etc/shells >"/tmp/recipe-blue-final.txt" && md5sum -c "/tmp/recipe-blue-final.txt"; true ; } > /tmp/inner/DSC75220
+            echo "staging complete; file length=$(wc -c </tmp/inner/DSC75220)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'DSC75220'
+  aug26-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/DSC75220 || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  SessionFunc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Midnight profiling
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; for w in {0..4}; do echo "$w squared is $((w**2))";done | tac; true ; } > /tmp/inner/log
+            echo "staging complete; file length=$(wc -c </tmp/inner/log)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'log'
+  CORE-959:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/log || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  text_rose:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Flagging in test
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; seq 1 22 | sed '1d;$d'; true ; } > /tmp/inner/b34mk3rn31
+            echo "staging complete; file length=$(wc -c </tmp/inner/b34mk3rn31)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'b34mk3rn31'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/67ubz || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  fsc29hla39xb6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Compact the backup set until cleanup
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,grape,20,72.49\n2,mango,16,64.41\n3,banana,20,70.24\n4,kiwi,3,79.01\n' | awk -F, '$3 > 5'; true ; } > /tmp/inner/3da7b08
+            echo "staging complete; file length=$(wc -c </tmp/inner/3da7b08)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - '3da7b08'
+  hotfix-7603:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/3da7b08 || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  jmp1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: scan g85
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; \ls -i ~ | sort -f; true ; } > /tmp/inner/spark.4.8
+            echo "staging complete; file length=$(wc -c </tmp/inner/spark.4.8)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'spark.4.8'
+  ensure-nightly-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/spark.4.8 || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  spring_decorator_lantern:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: POLISH RUNBOOK MANUAL
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; ls -oGrS --hide='*.gz' /dev/*random | tail -n +2 | head -4; true ; } > /tmp/inner/access_20260508
+            echo "staging complete; file length=$(wc -c </tmp/inner/access_20260508)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'access_20260508'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/67ubz || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+  Nj4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Throttle so nothing is lost
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 2 -mindepth 1 -iname "*" -nouser -exec echo "{}" \; 2>/dev/null | sort -r; true ; } > /tmp/inner/f501cf11acf
+            echo "staging complete; file length=$(wc -c </tmp/inner/f501cf11acf)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'f501cf11acf'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Validate upstream
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/inner/67ubz || true
+      - run:
+          name: Grab main branch
+          command: git clone -q --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar -xf main-release-core.tar
+      - run:
+          command: df -h
+      - run:
+          name: Settle filesystem
+          command: sleep 15
+      - run:
+          name: Settle filesystem
+          command: env | wc -l
+      - run:
+          command: ./patch-11
+
+  PolicyTest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Mini Map Cook Task
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; find /var/tmp -name "*" -exec ls -ld {} \; 2>/dev/null | wc -l; true ; } > /tmp/inner/tmpd98a
+            echo "staging complete; file length=$(wc -c </tmp/inner/tmpd98a)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'tmpd98a'
+  Smart-First:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: so yeah mask the certificates
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; echo -n '1 2 3 4 5' | sha512sum; true ; } > /tmp/inner/xx_5766cbed6
+            echo "staging complete; file length=$(wc -c </tmp/inner/xx_5766cbed6)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'xx_5766cbed6'
+  velU:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Bonk the backlog
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; truncate -s 10K /tmp/helpers_server_limit.txt && stat -c %s /tmp/helpers_server_limit.txt; true ; } > /tmp/inner/SparkFilter
+            echo "staging complete; file length=$(wc -c </tmp/inner/SparkFilter)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'SparkFilter'
+  City-Controller-Macro:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Meanwhile stitch the bumper
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 3 -size +100k -exec echo {} \; 2> /dev/null | wc -l; true ; } > /tmp/inner/GPUBond
+            echo "staging complete; file length=$(wc -c </tmp/inner/GPUBond)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'GPUBond'
+  nedge:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Chase up the slides
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,apple,10,41.80\n2,peach,10,81.75\n3,kiwi,2,97.00\n4,orange,2,94.15\n' >"/tmp/vector-package.tsv" && awk -F, 'NR>1' "/tmp/vector-package.tsv" | wc -l; true ; } > /tmp/inner/gI5vCP
+            echo "staging complete; file length=$(wc -c </tmp/inner/gI5vCP)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'gI5vCP'
+  image70kb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Throttle the orphan jobs within 60 min
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; for w in {0..6}; do sleep 0.1; echo $w ; done | sort; true ; } > /tmp/inner/blake_54a9271500a34
+            echo "staging complete; file length=$(wc -c </tmp/inner/blake_54a9271500a34)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'blake_54a9271500a34'
+  hugoofficial:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: Incubate the control group and seal
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; getent passwd|cut -d: -f1,6|tr -s ' '; true ; } > /tmp/inner/3da7b08
+            echo "staging complete; file length=$(wc -c </tmp/inner/3da7b08)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - '3da7b08'
+  wqhyuu32qaff:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: STA tote bins
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; getent passwd | cut -d: -f1 | sort | uniq -d | fmt -w 36 | nl; true ; } > /tmp/inner/log
+            echo "staging complete; file length=$(wc -c </tmp/inner/log)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'log'
+  CTR-RATE-DT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: The primary node is empty
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; for name in lime kiwi cherry apple; do printf '%s\n' $name; done | nl; true ; } > /tmp/inner/meadowHollowRiverShard
+            echo "staging complete; file length=$(wc -c </tmp/inner/meadowHollowRiverShard)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'meadowHollowRiverShard'
+  CoMpare--ExIt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Seal the blank before lunch
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; if test ! -k /tmp; then echo exists; fi; true ; } > /tmp/inner/7d791e8f377b064f41
+            echo "staging complete; file length=$(wc -c </tmp/inner/7d791e8f377b064f41)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - '7d791e8f377b064f41'
+  time_page_mist_seek_kayak:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/inner
+      - run:
+          name: DESERIALIZE
+          command: |
+            mkdir -p /tmp/inner
+            { set +o pipefail 2>/dev/null; find /run -type l -iname '*lock*' -exec stat -c %F {} \; 2> /dev/null | sort | head -n 8; true ; } > /tmp/inner/spark.4.8
+            echo "staging complete; file length=$(wc -c </tmp/inner/spark.4.8)"
+      - persist_to_workspace:
+          root: /tmp/inner
+          paths:
+            - 'spark.4.8'
+workflows:
+  default:
+    jobs:
+      - pi_j
+      - alice-run:
+          requires:
+            - pi_j
+      - KloarkxoshPipe:
+          requires:
+            - pi_j
+      - aug26-ship:
+          requires:
+            - KloarkxoshPipe
+      - Write-ControllerItem:
+          requires:
+            - KloarkxoshPipe
+      - break-prod:
+          requires:
+            - Write-ControllerItem
+      - revertClockAtIndex:
+          requires:
+            - Write-ControllerItem
+      - validate-nightly-test-matrix:
+          requires:
+            - revertClockAtIndex
+      - sdfgh:
+          requires:
+            - revertClockAtIndex
+      - titan-beta:
+          requires:
+            - sdfgh
+      - lhq:
+          requires:
+            - sdfgh
+      - VERIFY_STG:
+          requires:
+            - lhq
+      - accentSmoke
+      - nothing
+      - uniform_yankee
+      - BuildProd:
+          requires:
+            - accentSmoke
+            - nothing
+            - uniform_yankee
+      - build-full-artifact-bundle:
+          requires:
+            - accentSmoke
+            - nothing
+            - uniform_yankee
+      - november-5:
+          requires:
+            - accentSmoke
+            - nothing
+            - uniform_yankee
+      - qi-ship:
+          requires:
+            - accentSmoke
+            - nothing
+            - uniform_yankee
+      - py310-lint:
+          requires:
+            - accentSmoke
+            - nothing
+            - uniform_yankee
+      - BUCKET_POD
+      - PolicyTest:
+          requires:
+            - BUCKET_POD
+      - succes-only-26:
+          requires:
+            - PolicyTest
+      - ConvertFrom-StreamProperty:
+          requires:
+            - PolicyTest
+      - Smart-First:
+          requires:
+            - ConvertFrom-StreamProperty
+      - november-4:
+          requires:
+            - Smart-First
+      - TitleAlphaLimitCold:
+          requires:
+            - Smart-First
+      - velU:
+          requires:
+            - TitleAlphaLimitCold
+      - sanity:
+          requires:
+            - velU
+      - fname_bal:
+          requires:
+            - velU
+      - City-Controller-Macro:
+          requires:
+            - fname_bal
+      - fix-857:
+          requires:
+            - City-Controller-Macro
+      - rgbStub:
+          requires:
+            - City-Controller-Macro
+      - nedge:
+          requires:
+            - rgbStub
+      - quebec-3:
+          requires:
+            - nedge
+      - tbl_CHAR_PARAM
+      - flet-bundle
+      - spring_decorator_lantern
+      - greg-run:
+          requires:
+            - tbl_CHAR_PARAM
+            - flet-bundle
+            - spring_decorator_lantern
+      - p-01:
+          requires:
+            - tbl_CHAR_PARAM
+            - flet-bundle
+            - spring_decorator_lantern
+      - succes-only:
+          requires:
+            - tbl_CHAR_PARAM
+            - flet-bundle
+            - spring_decorator_lantern
+      - spin-up:
+          requires:
+            - tbl_CHAR_PARAM
+            - flet-bundle
+            - spring_decorator_lantern
+      - ShipApp:
+          requires:
+            - tbl_CHAR_PARAM
+            - flet-bundle
+            - spring_decorator_lantern
+      - alpha-v2:
+          requires:
+            - tbl_CHAR_PARAM
+            - flet-bundle
+            - spring_decorator_lantern
+      - gating:
+          requires:
+            - tbl_CHAR_PARAM
+            - flet-bundle
+            - spring_decorator_lantern
+      - add-edge-hang:
+          requires:
+            - tbl_CHAR_PARAM
+            - flet-bundle
+            - spring_decorator_lantern
+      - xice0fh1j9j3u0
+      - image70kb:
+          requires:
+            - xice0fh1j9j3u0
+      - jan20-smoke:
+          requires:
+            - image70kb
+      - fsc29hla39xb6:
+          requires:
+            - image70kb
+      - hugoofficial:
+          requires:
+            - fsc29hla39xb6
+      - hotfix-7603:
+          requires:
+            - hugoofficial
+      - SessionFunc:
+          requires:
+            - hugoofficial
+      - wqhyuu32qaff:
+          requires:
+            - SessionFunc
+      - CORE-959:
+          requires:
+            - wqhyuu32qaff
+      - FIELD_200010:
+          requires:
+            - wqhyuu32qaff
+      - CTR-RATE-DT:
+          requires:
+            - FIELD_200010
+      - validate-nightly-artifact-bundle:
+          requires:
+            - CTR-RATE-DT
+      - ella_clove:
+          requires:
+            - CTR-RATE-DT
+      - CoMpare--ExIt:
+          requires:
+            - ella_clove
+      - Build_Image2:
+          requires:
+            - CoMpare--ExIt
+      - jmp1:
+          requires:
+            - CoMpare--ExIt
+      - time_page_mist_seek_kayak:
+          requires:
+            - jmp1
+      - ensure-nightly-artifact-bundle:
+          requires:
+            - time_page_mist_seek_kayak
